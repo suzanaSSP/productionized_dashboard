@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:15 #Processes the sql commands and does the
+    container_name: sales_db
+    restart: always
+    environment:
+      POSTGRES_USER: byu_student
+      POSTGRES_PASSWORD: your_secure_password
+      POSTGRES_DB: olist_sales
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./data:/tmp/csv_data
+      # Optional: Auto-load data on first start
+      # - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  postgres_data:

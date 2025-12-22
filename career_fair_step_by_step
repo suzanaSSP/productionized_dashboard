@@ -1,0 +1,17 @@
+Project 1: The "Productionized" Sales Dashboard
+Tools: SQL (PostgreSQL), Docker, Tableau/Plotly
+Concept: Instead of just opening a CSV in Python, you will build a "mini-infrastructure" that mimics how data flows in a real company.
+1. Set Up the Database (SQL + Docker)
+The Task: Use Docker to run a PostgreSQL database.
+How to do it: 1. Create a docker-compose.yml file to spin up a Postgres container.
+2. Find a dataset (like the Olist E-Commerce dataset) and load it into your SQL tables.
+Skills to showcase: "I can containerize environments using Docker and manage relational schemas in SQL."
+2. Query the Data (Advanced SQL)
+The Task: Write a "Golden Query" that joins at least 3 tables (Orders, Customers, Products).
+Skills to use: LEFT JOIN, GROUP BY, and Window Functions (e.g., RANK() OVER to find the top-selling product per category).
+3. Build the Dashboard (Tableau or Plotly)
+The Task: Connect Tableau Public to your cleaned SQL output.
+What to build: Create three specific views:
+Sales Trend: A line chart showing revenue over time.
+Geographic Map: A heatmap of customer locations.
+Customer LTV: A bar chart of "Lifetime Value" per customer segment.
