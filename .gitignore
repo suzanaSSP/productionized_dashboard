@@ -1,6 +1,6 @@
 # Large data files
 *.csv
-
+.env
 # Database
 *.db
 *.sqlite

@@ -36,5 +36,6 @@ Phase 3: Dashboard Visualization (Closing the Visualization Gap)
     Step 3.2: Visualize RFM Segmentation and Model ResultsUse Streamlit to display key insights and model results:Data Visualization (Matplotlib/Seaborn): Plot the distribution of your RFM features using histograms (Seaborn). Create a scatter plot or bar chart showing the breakdown of customers across your defined RFM segments.Model Metrics: Display the calculated accuracy and F1-score clearly.Insights: Use Streamlit's markdown features (st.markdown) to present a brief textual interpretation of what the model and segmentation tell the sales team (your Communication gap).
     
     Step 3.3: Run the DashboardRun your application from the terminal:Bashstreamlit run app.py
+    Step 3.4: Create site using React to display Matplotlib
 
 This will launch a web browser showing your interactive sales dashboard powered by the data you processed using SQL and Pandas, and the predictions from your Scikit-learn model.This step-by-step process ensures you check off every gap addressed by Project 1. Once you finish this, you will have concrete points for your resume like: "Engineered ETL pipeline using PostgreSQL and Pandas to calculate customer RFM scores, resulting in a Streamlit dashboard visualizing customer segmentation."
