@@ -39,3 +39,44 @@ Phase 3: Dashboard Visualization (Closing the Visualization Gap)
     Step 3.4: Create site using React to display Matplotlib
 
 This will launch a web browser showing your interactive sales dashboard powered by the data you processed using SQL and Pandas, and the predictions from your Scikit-learn model.This step-by-step process ensures you check off every gap addressed by Project 1. Once you finish this, you will have concrete points for your resume like: "Engineered ETL pipeline using PostgreSQL and Pandas to calculate customer RFM scores, resulting in a Streamlit dashboard visualizing customer segmentation."
+
+
+Start projects with requirements on how front end should be
+Technical spec -> o que fazer para fazer o requirements doc (preciso desse Api, num sei o que numsei o que)
+Implementation plan -> O que vou fazer para criar isso 
+Software development lifecycle -> SDLC
+
+3. Backend API Specification
+3.1 REST Endpoints
+GET /api/customers/segments
+Retrieve customer segmentation summary
+
+Response:
+
+{
+  "segments": {
+    "Champions": 150,
+    "Loyal": 320,
+    "At-Risk": 180,
+    "Lost": 250
+  },
+  "total_customers": 900,
+  "last_updated": "2025-12-31"
+}
+
+
+{
+  "data": [
+    {
+      "customer_id": "C001",
+      "name": "John Doe",
+      "recency": 5,
+      "frequency": 25,
+      "monetary": 3500.50,
+      "segment": "Champions",
+      "rfm_score": 555
+    }
+  ],
+  "total": 900,
+  "page": 1
+}
