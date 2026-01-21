@@ -4,7 +4,7 @@ A web-based sales analytics dashboard that segments customers using RFM analysis
 
 2. Functional Requirements
 2.1 Backend/Data Processing
-    FR1: Extract and load sales transaction data into SQLite database with normalized schema (Customers, Transactions, Products tables)
+    FR1: Extract and load sales transaction data into PostGres database with normalized schema (Customers, Transactions, Products tables)
     FR2: Calculate RFM scores (Recency, Frequency, Monetary) using SQL queries
     FR3: Segment customers into 4+ tiers (e.g., "Champions," "Loyal," "At-Risk," "Lost") based on RFM quantiles
     FR4: Train and expose a classification model that predicts next-month purchase probability
@@ -13,26 +13,9 @@ A web-based sales analytics dashboard that segments customers using RFM analysis
     FR6: Display customer segmentation distribution (pie/bar chart)
     FR7: Show RFM metrics with interactive filters (by segment, date range, product category)
     FR8: Display model performance metrics (Accuracy, F1-Score, Confusion Matrix)
-    FR9: Provide downloadable CSV export of segmented customer lists
-    FR10: Show individual customer details with RFM scores and predicted purchase likelihood
-2.3 Cloud Deployment (AWS)
-    FR11: Deploy backend API to AWS (EC2 or Lambda)
-    FR12: Migrate SQLite database to AWS RDS (PostgreSQL) for production
-    FR13: Store static assets and data exports in AWS S3
-    FR14: Implement AWS CloudWatch for application monitoring and logging
-    FR15: Configure AWS Security Groups and IAM roles for secure access
+    FR9: Show individual customer details with RFM scores and predicted purchase likelihood
 
-3. Non-Functional Requirements
-Requirement	Details
-Performance:	Dashboard loads within 3 seconds; API responds in <500ms
-Scalability:	Support 10,000+ customer records without performance degradation
-Availability:	99% uptime during business hours; AWS multi-AZ deployment for high availability
-Security:	Basic authentication for dashboard; no sensitive data in frontend; AWS IAM-based access control
-Browser Support:	Chrome, Firefox, Safari (latest 2 versions)
-Data Refresh:	Daily batch updates; real-time data available within 24 hours
-Cloud Hosting:	AWS-based infrastructure with automated backups and disaster recovery
-
-4. User Stories
+3. User Stories
 AS A: Sales Manager
 I WANT TO: See which customers are most likely to purchase next month
 SO THAT: I can prioritize outreach and allocate resources efficiently
@@ -51,17 +34,13 @@ Acceptance Criteria:
 - See confusion matrix and F1-score
 - Drill down into individual customer RFM calculations
 
-
-5. Technical Stack
+4. Technical Stack
 Layer:	Technology
-Database:	SQLite (Development) → AWS RDS PostgreSQL (Production)
-Backend API:	Python (Flask/FastAPI) deployed on AWS EC2 or Lambda
+Database:	PostgreSQL (Development and Production) 
+Backend API:	Python (Flask/FastAPI) 
 Data Processing:	Pandas, NumPy, Scikit-learn
 Frontend:	React + Recharts (or similar)
 Dashboard:	Streamlit (for MVP) or custom React
-Deployment:	Localhost (Phase 1) → AWS Cloud (Phase 2)
-Cloud Services:	AWS EC2/Lambda, RDS, S3, CloudWatch, IAM
-CI/CD:	GitHub Actions with AWS deployment pipeline
 
 6. Data Model
 customers (customer_id, name, email, signup_date, country)
