@@ -43,34 +43,14 @@ Frontend:	React + Recharts (or similar)
 Dashboard:	Streamlit (for MVP) or custom React
 
 6. Data Model
-customers (customer_id, name, email, signup_date, country)
-transactions (transaction_id, customer_id, product_id, invoice_date, quantity, amount)
-products (product_id, product_name, category, price)
-rfm_scores (customer_id, recency, frequency, monetary, segment, prediction)
-
-7. Success Metrics
-✅ Dashboard loads in <3 seconds
-✅ Model achieves F1-Score ≥ 0.70
-✅ Segmentation has clear business interpretation
-✅ Sales team can act on insights within 5 minutes of viewing
-✅ AWS deployment completes with zero downtime
-✅ Monthly AWS costs stay within $50 budget (Free Tier optimized)
+customers (customer_id, customer_unique_id, customer_zip_code, customer_city, customer_state)
+order_items (order_id, order_item_id, product_id, seller_id, shipping_limit_date, price, freight_value)
+products (product_id, product_category_name, product_name_lenght, product_description_lenght, product_photos_qty, product_weight_g, product_length_cm, product_height_cm, product_width_cm)
+rfm_scores (customer_id, last_purchase_date, recency_days, frequency, monetary, recency_score, frequency_score, monetary_score, overall_rfm_score, segment, calculated_date)
 
 8. Constraints & Assumptions
 Using publicly available dataset (Kaggle Online Retail)
-SQLite for local development, AWS RDS PostgreSQL for production
-Initial MVP targets internal use only
 No real-time data ingestion (batch updates sufficient)
-AWS Free Tier eligible services prioritized for cost optimization
-Data stored in AWS S3 with appropriate retention policies
-
-9. AWS Cloud Architecture
-9.1 Compute: AWS EC2 (t3.micro) or Lambda for serverless API
-9.2 Database: AWS RDS PostgreSQL (db.t3.micro) with automated backups
-9.3 Storage: AWS S3 for data exports, model artifacts, and static assets
-9.4 Monitoring: AWS CloudWatch for logs, metrics, and alarms
-9.5 Security: VPC configuration, Security Groups, IAM roles with least privilege
-9.6 Cost Management: AWS Cost Explorer and budgets to monitor spending
 
 10. Implementation Phases
 Phase 1 (Local Development):
@@ -78,11 +58,3 @@ Phase 1 (Local Development):
 - Develop RFM segmentation and ML model
 - Test locally with sample data
 
-Phase 2 (AWS Deployment):
-- Set up AWS account and configure IAM
-- Create RDS PostgreSQL instance and migrate data
-- Deploy API to EC2/Lambda
-- Configure S3 buckets for storage
-- Set up CloudWatch monitoring
-- Implement CI/CD pipeline
-- Conduct load testing and security audit
