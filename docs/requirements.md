@@ -42,17 +42,17 @@ Data Processing:	Pandas, NumPy, Scikit-learn
 Frontend:	React + Recharts (or similar)
 Dashboard:	Streamlit (for MVP) or custom React
 
-6. Data Model
+5. Data Model
 customers (customer_id, customer_unique_id, customer_zip_code, customer_city, customer_state)
 order_items (order_id, order_item_id, product_id, seller_id, shipping_limit_date, price, freight_value)
 products (product_id, product_category_name, product_name_lenght, product_description_lenght, product_photos_qty, product_weight_g, product_length_cm, product_height_cm, product_width_cm)
 rfm_scores (customer_id, last_purchase_date, recency_days, frequency, monetary, recency_score, frequency_score, monetary_score, overall_rfm_score, segment, calculated_date)
 
-8. Constraints & Assumptions
+6. Constraints & Assumptions
 Using publicly available dataset (Kaggle Online Retail)
 No real-time data ingestion (batch updates sufficient)
 
-10. Implementation Phases
+7. Implementation Phases
 Phase 1 (Local Development):
 - Build dashboard with SQLite
 - Develop RFM segmentation and ML model
