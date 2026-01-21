@@ -62,13 +62,13 @@
 **Goal:** Build Flask REST API
 
 ### Tasks:
-- [ ] **Task 4.1:** Create `backend/app.py` with Flask setup
-- [ ] **Task 4.2:** Implement `GET /api/customers/segments`
-- [ ] **Task 4.3:** Implement `GET /api/customers/rfm` with filters
-- [ ] **Task 4.4:** Implement `GET /api/customers/{id}/details`
-- [ ] **Task 4.5:** Implement `GET /api/model/metrics`
-- [ ] **Task 4.6:** Implement `POST /api/export/customers` (CSV download)
-- [ ] **Task 4.7:** Test all endpoints using Postman or curl
+- [✅] **Task 4.1:** Create `backend/app.py` with Flask setup
+- [✅ ] **Task 4.2:** Implement `GET /api/customers/segments`
+- [✅] **Task 4.3:** Implement `GET /api/customers/rfm` with filters
+- [✅] **Task 4.4:** Implement `GET /api/customers/{id}/details`
+- [✅ ] **Task 4.5:** Implement `GET /api/model/metrics`
+- [✅ ] **Task 4.6:** Implement `POST /api/export/customers` (CSV download)
+- [✅ ] **Task 4.7:** Test all endpoints using Postman or curl
 
 **Deliverables:**
 - `backend/app.py` running on `localhost:5000`
@@ -81,7 +81,7 @@
 **Goal:** Build React dashboard
 
 ### Tasks:
-- [ ] **Task 5.1:** Create React app: `npx create-react-app frontend`
+- [✅] **Task 5.1:** Create React app: `npx create-react-app frontend`
 - [ ] **Task 5.2:** Create `services/api.js` with fetch functions
 - [ ] **Task 5.3:** Build `Dashboard.jsx` component
 - [ ] **Task 5.4:** Build `SegmentationChart.jsx` (pie/bar chart using Recharts)
