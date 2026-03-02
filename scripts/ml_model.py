@@ -39,7 +39,6 @@ class RFMPredictionModel:
         self.engine = create_engine('postgresql://byu_student:your_secure_password@localhost:5432/olist_sales')
     
         
-        
     def prepare_data(self, rfm_df):
         """
         Prepare features and target variable.
@@ -74,57 +73,6 @@ class RFMPredictionModel:
         
         print(f"Training set size: {len(self.X_train)}")
         print(f"Testing set size: {len(self.X_test)}\n")
-        
-    def train_random_forest(self, n_estimators=100, n_jobs=-1):
-        """
-        Train Random Forest classifier.
-        
-        Args:
-            n_estimators: Number of trees in the forest
-            n_jobs: Number of jobs to run in parallel
-        """
-        print("Training Random Forest Classifier...")
-        self.rf_model = RandomForestClassifier(
-            n_estimators=50,           # Reduced from 100
-            max_depth=5,                # Limit tree depth
-            min_samples_split=100,      # Require more samples to split
-            min_samples_leaf=50,        # Require more samples in leaf nodes
-            random_state=self.random_state, 
-            n_jobs=n_jobs
-        )
-        self.rf_model.fit(self.X_train, self.Y_train)
-        
-    def evaluate_random_forest(self):
-        """Evaluate Random Forest model performance."""
-        Y_pred_rf = self.rf_model.predict(self.X_test)
-        
-        print("\n" + "-"*60)
-        print("RANDOM FOREST RESULTS")
-        print("-"*60)
-        
-        rf_accuracy = accuracy_score(self.Y_test, Y_pred_rf)
-        rf_f1 = f1_score(self.Y_test, Y_pred_rf, average='binary', zero_division=0)
-        rf_precision = precision_score(self.Y_test, Y_pred_rf, zero_division=0)
-        rf_recall = recall_score(self.Y_test, Y_pred_rf, zero_division=0)
-        rf_cm = confusion_matrix(self.Y_test, Y_pred_rf, labels=[0, 1])
-        
-        print(f"Accuracy: {rf_accuracy:.4f}")
-        print(f"Precision: {rf_precision:.4f}")
-        print(f"Recall: {rf_recall:.4f}")
-        print(f"F1-Score: {rf_f1:.4f}")
-        print(f"\nConfusion Matrix:\n{rf_cm}")
-        print("\nClassification Report:")
-        print(classification_report(self.Y_test, Y_pred_rf, target_names=['Not High-Value', 'High-Value'], zero_division=0))
-        
-        # Feature importance
-        print("\nFeature Importance:")
-        feature_importance = pd.DataFrame({
-            'Feature': self.X_columns,
-            'Importance': self.rf_model.feature_importances_
-        }).sort_values('Importance', ascending=False)
-        print(feature_importance)
-        
-        return rf_accuracy, rf_f1
         
     def train_logistic_regression(self, max_iter=1000):
         """
@@ -162,21 +110,6 @@ class RFMPredictionModel:
         
         return lr_accuracy, lr_f1
         
-    def compare_models(self, rf_accuracy, rf_f1, lr_accuracy, lr_f1):
-        """
-        Compare model performances.
-        
-        Args:
-            rf_accuracy: Random Forest accuracy
-            rf_f1: Random Forest F1 score
-            lr_accuracy: Logistic Regression accuracy
-            lr_f1: Logistic Regression F1 score
-        """
-        print("\n" + "="*60)
-        print("MODEL COMPARISON")
-        print("="*60)
-        print(f"Random Forest - Accuracy: {rf_accuracy:.4f}, F1-Score: {rf_f1:.4f}")
-        print(f"Logistic Regression - Accuracy: {lr_accuracy:.4f}, F1-Score: {lr_f1:.4f}")
         
     def save_predictions(self, rfm_df):
         """
@@ -188,11 +121,8 @@ class RFMPredictionModel:
         # Prepare features for prediction
         X = rfm_df[self.feature_columns].copy()
         X = pd.get_dummies(X)
-        
-        # Add predictions
-        rfm_df['RF_Prediction'] = np.nan
-        rfm_df.loc[self.valid_indices, 'RF_Prediction'] = self.rf_model.predict(X[self.valid_indices])
-        
+    
+
         rfm_df['LR_Prediction'] = np.nan
         rfm_df.loc[self.valid_indices, 'LR_Prediction'] = self.lr_model.predict(X[self.valid_indices])
         
@@ -239,17 +169,10 @@ class RFMPredictionModel:
         
         self.prepare_data(rfm_df)
         
-        # Train and evaluate Random Forest
-        self.train_random_forest()
-        rf_accuracy, rf_f1 = self.evaluate_random_forest()
-        
         # Train and evaluate Logistic Regression
         self.train_logistic_regression()
         lr_accuracy, lr_f1 = self.evaluate_logistic_regression()
-        
-        # Compare models
-        self.compare_models(rf_accuracy, rf_f1, lr_accuracy, lr_f1)
-        
+
         # Save predictions
         self.save_predictions(rfm_df)
 
